@@ -28,5 +28,24 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/appicon.appiconset</string>
+	<key>CFBundleURLSchemes</key>
+	<array>
+		<string>net.ivsoftware.demo</string>
+	</array>
+	<key>CFBundleIdentifier</key>
+	<string></string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>UrlInterceptor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>net.ivsoftware.demo</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+	</array>
 </dict>
 </plist>

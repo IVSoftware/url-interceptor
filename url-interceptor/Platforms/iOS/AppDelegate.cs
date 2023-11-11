@@ -1,4 +1,5 @@
 ﻿using Foundation;
+using UIKit;
 
 namespace url_interceptor
 {
@@ -6,5 +7,24 @@ namespace url_interceptor
     public class AppDelegate : MauiUIApplicationDelegate
     {
         protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
+        public override bool OpenUrl(UIApplication application, NSUrl url, NSDictionary options)
+        {
+            if(url.AbsoluteString.Contains("net.ivsoftware.demo"))
+            {
+                StartMainActivity();
+            }
+            Task
+                .Delay(TimeSpan.FromSeconds(0.5))
+                .GetAwaiter()
+                .OnCompleted(() =>
+                {
+                    App.Current.MainPage.DisplayAlert("Interceptor", "Hello", "OK");
+                });
+            return true;
+        }
+
+        private void StartMainActivity()
+        {
+        }
     }
 }
