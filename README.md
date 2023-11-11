@@ -1,6 +1,6 @@
 # Url Interceptor
 
-What has worked for me is to implement this as a platform-specific function. Here's an example for Android.
+What has worked for me is to implement this in platform-specific code. For example, this works for Android.
 
 ```
 using Android.App;
@@ -28,5 +28,37 @@ namespace url_interceptor.Platforms.Android
     }
 }
 ```
+You can intercept more recognizable data schemes such as `http://` and `https://` but in this case the one I'm using is custom for this demo app - it is set to respond to will respond to `net.ivsoftware.demo://`.
 
-This will respond to `net.ivsoftware.demo://` but testing it usually requires more than just typing it in the search bar. Feel free to test-fire this in your browser using http://www.ivsoftware.net/interceptor-test.html.
+It's likely to be mistaken for a search if you just "type it into the search bar" so testing it usually requires a button. I made one at http://www.ivsoftware.net/interceptor-test.html that will fire this URL in order to test this app.
+___
+
+For iOS the Info.plist will need to be edited in the `Advanced` tab:
+
+[![Info.plist][1]][1]
+
+And handled in AppDelegate.cs.
+
+```
+public override bool OpenUrl(UIApplication application, NSUrl url, NSDictionary options)
+{
+    if(url.AbsoluteString.Contains("net.ivsoftware.demo"))
+    {
+        Task
+            .Delay(TimeSpan.FromSeconds(0.5))
+            .GetAwaiter()
+            .OnCompleted(() =>
+            {
+                App.Current.MainPage.DisplayAlert("Interceptor", "Hello", "OK");
+            });
+        return true;
+    }
+    else
+    {
+        return base.OpenUrl(application, url, options);
+    }
+}
+```
+
+
+  [1]: https://i.stack.imgur.com/l06bS.png

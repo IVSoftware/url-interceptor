@@ -11,20 +11,19 @@ namespace url_interceptor
         {
             if(url.AbsoluteString.Contains("net.ivsoftware.demo"))
             {
-                StartMainActivity();
+                Task
+                    .Delay(TimeSpan.FromSeconds(0.5))
+                    .GetAwaiter()
+                    .OnCompleted(() =>
+                    {
+                        App.Current.MainPage.DisplayAlert("Interceptor", "Hello", "OK");
+                    });
+                return true;
             }
-            Task
-                .Delay(TimeSpan.FromSeconds(0.5))
-                .GetAwaiter()
-                .OnCompleted(() =>
-                {
-                    App.Current.MainPage.DisplayAlert("Interceptor", "Hello", "OK");
-                });
-            return true;
-        }
-
-        private void StartMainActivity()
-        {
+            else
+            {
+                return base.OpenUrl(application, url, options);
+            }
         }
     }
 }
