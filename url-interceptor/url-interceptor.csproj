@@ -15,7 +15,7 @@
 		<ApplicationTitle>url-interceptor</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.url_interceptor</ApplicationId>
+		<ApplicationId>com.companyname.urlinterceptor</ApplicationId>
 		<ApplicationIdGuid>6172e6a1-4743-4ccf-be99-939db28853f2</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -55,6 +55,13 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(OSPlatform)' == 'iOS' ">
+		<ProjectReference Include="..\share-extension\share-extension.csproj" >
+			<IsAppExtension>true</IsAppExtension>
+			<IsWatchApp>false</IsWatchApp>			
+		</ProjectReference>
 	</ItemGroup>
 
 </Project>
