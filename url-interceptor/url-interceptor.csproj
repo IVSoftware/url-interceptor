@@ -31,7 +31,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(TargetFramework)'=='net7.0-ios'">
-		<CodesignKey>Apple Development: Your Name (Your Key)</CodesignKey>
+		<CodesignKey>Apple Development: Thomas Gregor (23F6X768UK)</CodesignKey>
 	  <CodesignProvision>VS: WildCard Development</CodesignProvision>
 	</PropertyGroup>
 
@@ -58,7 +58,7 @@
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(OSPlatform)' == 'iOS' ">
-		<ProjectReference Include="..\share-extension\share-extension.csproj" >
+		<ProjectReference Include="..\share-extension\share-extension.csproj">
 			<IsAppExtension>true</IsAppExtension>
 			<IsWatchApp>false</IsWatchApp>			
 		</ProjectReference>
