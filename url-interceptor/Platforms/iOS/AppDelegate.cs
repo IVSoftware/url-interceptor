@@ -22,6 +22,13 @@ namespace url_interceptor
             }
             else
             {
+                Task
+                    .Delay(TimeSpan.FromSeconds(0.5))
+                    .GetAwaiter()
+                    .OnCompleted(() =>
+                    {
+                        App.Current.MainPage.DisplayAlert("Interceptor", "Link", "OK");
+                    });
                 return base.OpenUrl(application, url, options);
             }
         }
