@@ -1,4 +1,6 @@
-﻿namespace url_interceptor
+﻿using System.Diagnostics;
+
+namespace url_interceptor
 {
     public partial class MainPage : ContentPage
     {
@@ -19,6 +21,17 @@
                 CounterBtn.Text = $"Clicked {count} times";
 
             SemanticScreenReader.Announce(CounterBtn.Text);
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            Task.Delay(1000).GetAwaiter().OnCompleted(() => 
+            {
+                var mainBundlePath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                Debug.Write(string.Join(Environment.NewLine, Directory.GetDirectories(mainBundlePath)));
+                { }
+            });
         }
     }
 }
